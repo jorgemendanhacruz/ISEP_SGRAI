@@ -84,11 +84,11 @@ export default class Pong extends THREE.Group {
         this.player1Parameters.side = "left";
         this.player1 = new Player(this.player1Parameters, this.table);
         /* To-do #4 - Add player 1 racket to the scene */
-        this.add(this.player1); 
+        this.add(this.player1);
         this.player2Parameters.side = "right";
         this.player2 = new Player(this.player2Parameters, this.table);
         /* To-do #5 - Add player 2 racket to the scene */
-        this.add(this.player2); 
+        this.add(this.player2);
 
         // Create the ball
         this.ball = new Ball(this.ballParameters, this.player1, this.player2, this.table);
@@ -247,19 +247,19 @@ export default class Pong extends THREE.Group {
                         this.ball.center.x (the ball's center X-position)
                         this.table.halfSize.x (the table's half X-dimension)
                         this.player1.score (player 1 score)
-                        this.player2.score (player 2 score)
-    
-                if (...) { // Player 1 scored
-                    ...; // Increment player 1 score
+                        this.player2.score (player 2 score)*/
+
+                if (this.ball.center.x > this.table.halfSize.x) { // Player 1 scored
+                    this.player1.score++; // Increment player 1 score
                     this.ball.initialize();
                     this.displayScore();
                 }
-                else if (...) { // Player 2 scored
-                    ...; // Increment player 2 score
+                else if (this.ball.center.x < - this.table.halfSize.x) { // Player 2 scored
+                    this.player2.score++; // Increment player 2 score
                     this.ball.initialize();
                     this.ball.direction = Math.PI - this.ball.direction; // Reverse the ball direction
                     this.displayScore();
-                } */
+                }
 
                 /* To-do #15 - Check if the game is over
                     - the game ends when a player's score reaches a given threshold
@@ -267,13 +267,14 @@ export default class Pong extends THREE.Group {
                         this.player1.score (player 1 score)
                         this.player2.score (player 2 score)
                         this.gameParameters.end (the threshold)
-    
-                if (...) {
+                */
+
+                if (this.player1.score + this.player2.score == this.gameParameters.end) {
                     this.ball.visible = false; // Make the ball invisible
                     this.gameRunning = false;
                     this.gamePaused = true;
                     this.clock.stop();
-                } */
+                }
             }
             else {
                 text += "<tr><td>Game paused</td></tr>";
