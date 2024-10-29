@@ -14,14 +14,14 @@ export default class Wall {
 
         // Create a texture
         /* To-do #8 - Load the wall texture image
-            - image location: this.textureUrl
-        const texture = new THREE.TextureLoader().load(...);
-        texture.colorSpace = THREE.SRGBColorSpace; */
+            - image location: this.textureUrl*/
+        const texture = new THREE.TextureLoader().load(this.textureUrl);
+        texture.colorSpace = THREE.SRGBColorSpace; 
         /* To-do #9 - Configure the magnification and minification filters:
             - magnification filter: linear
-            - minification filter: mipmapping and trilinear
-        texture.magFilter = ...;
-        texture.minFilter = ...; */
+            - minification filter: mipmapping and trilinear*/
+        texture.magFilter = THREE.LinearFilter;
+        texture.minFilter = THREE.LinearMipmapLinearFilter;
 
         // Create a wall (seven faces) that casts and receives shadows
 
@@ -32,7 +32,7 @@ export default class Wall {
         let geometry = new THREE.PlaneGeometry(0.95, 1.0);
         /* To-do #10 - Assign the texture to the material's color map:
             - map: texture */
-        let material = new THREE.MeshPhongMaterial({ color: 0xffffff /* , ... */ });
+        let material = new THREE.MeshPhongMaterial({ color: 0xffffff, map: texture });
         let face = new THREE.Mesh(geometry, material);
         face.position.set(0.0, 0.0, 0.025);
         /* To-do #34 - Set the front face to cast and receive shadows

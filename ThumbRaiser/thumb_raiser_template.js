@@ -675,8 +675,8 @@ export default class ThumbRaiser {
                 // Add the maze, the player and the lights to the scene
                 this.scene3D.add(this.maze.object);
                 /* To-do #11 - Add the player to the scene
-                    - player: this.player.object
-                ...; */
+                    - player: this.player.object*/
+                this.scene3D.add(this.player.object);
                 this.scene3D.add(this.lights.object);
 
                 // Create the clock
@@ -713,37 +713,37 @@ export default class ThumbRaiser {
                         - start by assuming that the player is walking:
                             covered distance = walking speed * elapsed time
                         - walking speed: this.player.walkingSpeed
-                        - elapsed time: deltaT
-                    let coveredDistance = ...; */
+                        - elapsed time: deltaT*/
+                    let coveredDistance = this.player.walkingSpeed * deltaT;
                     /* To-do #13 - Compute the player's direction increment
                         - assume that the player is turning left or right while walking:
                             direction increment = turning speed * elapsed time
                         - turning speed: this.player.turningSpeed
-                        - elapsed time: deltaT
-                    let directionIncrement = ...; */
+                        - elapsed time: deltaT*/
+                    let directionIncrement = this.player.turningSpeed * deltaT;
                     if (this.player.keyStates.run) {
                         /* To-do #14 - Adjust the distance covered by the player
                             - now assume that the player is running:
-                            - multiply the covered distance by this.player.runningFactor
+                            - multiply the covered distance by this.player.runningFactor*/
 
-                        ...; */
+                        coveredDistance *= this.player.runningFactor;
                         /* To-do #15 - Adjust the player's direction increment
                             - now assume that the player is running:
-                            - multiply the direction increment by this.player.runningFactor
-                        ...; */
+                            - multiply the direction increment by this.player.runningFactor*/
+                        directionIncrement *= this.player.runningFactor;
                     }
                     /* To-do #16 - Check if the player is turning left or right and update the player direction accordingly by adding or subtracting the direction increment
                         - left key state: this.player.keyStates.left
                         - right key state: this.player.keyStates.right
                         - current direction: this.player.direction
-                        - direction increment: directionIncrement
+                        - direction increment: directionIncrement*/
 
-                    if (...) { // The player is turning left
-                        ...;
+                    if (this.player.keyStates.left) { // The player is turning left
+                        this.player.direction -= directionIncrement;
                     }
-                    else if (...) { // The player is turning right
-                        ...;
-                    } */
+                    else if (this.player.keyStates.right) { // The player is turning right
+                        this.player.direction += directionIncrement;
+                    }
                     const direction = THREE.MathUtils.degToRad(this.player.direction);
                     /* To-do #17 - Check if the player is moving backward or forward and update the player position accordingly
                         - backward key state: this.player.keyStates.backward
@@ -774,26 +774,26 @@ export default class ThumbRaiser {
                             this.animations.fadeToAction(/* action, duration */ /*);
 }
 else {
-    this.animations.fadeToAction(this.player.keyStates.run ? /* action : action, duration */ /*);
-                            this.player.position = newPosition;
-                        }
-                    } */ /*
-                                    else if (...) { // The player is moving forward
-                                        const newPosition = new THREE.Vector3(..., ..., ...).add(this.player.position);
-                                        /* To-do #19 - If the player collided with a wall, then trigger the death action; else, trigger either the walking or the running action
-                                            - death action: "Death"
-                                            - walking action: "Walking"
-                                            - running action: "Running"
-                                            - duration: 0.2 seconds
-                                        if (this.collision(newPosition)) {
-                                            this.animations.fadeToAction(/* action, duration */ /*);
+this.animations.fadeToAction(this.player.keyStates.run ? /* action : action, duration */ /*);
+                                                                this.player.position = newPosition;
+                                                            }
+                                                        } */ /*
+                    else if (...) { // The player is moving forward
+                        const newPosition = new THREE.Vector3(..., ..., ...).add(this.player.position);
+                        /* To-do #19 - If the player collided with a wall, then trigger the death action; else, trigger either the walking or the running action
+                            - death action: "Death"
+                            - walking action: "Walking"
+                            - running action: "Running"
+                            - duration: 0.2 seconds
+                        if (this.collision(newPosition)) {
+                            this.animations.fadeToAction(/* action, duration */ /*);
 }
 else {
 this.animations.fadeToAction(this.player.keyStates.run ? /* action : action, duration */ /*);
-                            this.player.position = newPosition;
-                        }
-                    }
-                    else */
+                                                                    this.player.position = newPosition;
+                                                                }
+                                                            }
+                                                            else */
                     /* To-do #20 - Check the player emotes
                         - jump key state: this.player.keyStates.jump
                         - jump emote: "Jump"
@@ -810,18 +810,18 @@ this.animations.fadeToAction(this.player.keyStates.run ? /* action : action, dur
                         - duration: 0.2 seconds
                     if (...) {
                         this.animations.fadeToAction(/* emote, duration */ /*);
-        }
-        else if (...) {
-            this.animations.fadeToAction(/* emote, duration */ /*);
+}
+else if (...) {
+    this.animations.fadeToAction(/* emote, duration */ /*);
+                                        }
+                                        else if (...) {
+                                            this.animations.fadeToAction(/* emote, duration */ /*);
+}
+else if (...) {
+    this.animations.fadeToAction(/* emote, duration */ /*);
                     }
                     else if (...) {
                         this.animations.fadeToAction(/* emote, duration */ /*);
-                }
-                else if (...) {
-                    this.animations.fadeToAction(/* emote, duration */ /*);
-                }
-                else if (...) {
-                    this.animations.fadeToAction(/* emote, duration */ /*);
                 }
                 else if (...) {
                     this.animations.fadeToAction(/* emote, duration */ /*);
